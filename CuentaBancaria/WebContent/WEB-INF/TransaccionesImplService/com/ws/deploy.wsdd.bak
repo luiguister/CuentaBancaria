@@ -1,0 +1,49 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TransaccionesImplService WSDL service -->
+
+  <service name="TransaccionesImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://ws.com"/>
+      <parameter name="wsdlServiceElement" value="TransaccionesImplService"/>
+      <parameter name="schemaQualified" value="http://ws.com,http://modelo.com"/>
+      <parameter name="wsdlServicePort" value="TransaccionesImpl"/>
+      <parameter name="className" value="com.ws.TransaccionesImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="TransaccionesImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="consultar" qname="operNS:consultar" xmlns:operNS="http://ws.com" returnQName="retNS:consultarReturn" xmlns:retNS="http://ws.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="consignar" qname="operNS:consignar" xmlns:operNS="http://ws.com" returnQName="retNS:consignarReturn" xmlns:retNS="http://ws.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:valor" xmlns:pns="http://ws.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="retirar" qname="operNS:retirar" xmlns:operNS="http://ws.com" returnQName="retNS:retirarReturn" xmlns:retNS="http://ws.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:valor" xmlns:pns="http://ws.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="calculo" qname="operNS:calculo" xmlns:operNS="http://ws.com" returnQName="retNS:calculoReturn" xmlns:retNS="http://ws.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:con" xmlns:pns="http://ws.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:valor" xmlns:pns="http://ws.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="validaCuenta" qname="operNS:validaCuenta" xmlns:operNS="http://ws.com" returnQName="retNS:validaCuentaReturn" xmlns:retNS="http://ws.com" returnType="rtns:Cuenta" xmlns:rtns="http://modelo.com" soapAction="" >
+        <parameter qname="pns:c" xmlns:pns="http://ws.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="validaCuenta retirar consultar consignar calculo"/>
+
+      <typeMapping
+        xmlns:ns="http://modelo.com"
+        qname="ns:Cuenta"
+        type="java:com.modelo.Cuenta"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

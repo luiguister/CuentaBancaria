@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ws.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ws.com" xmlns:intf="http://ws.com" xmlns:tns1="http://modelo.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://ws.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://modelo.com"/>
+   <element name="consultar">
+    <complexType/>
+   </element>
+   <element name="consultarResponse">
+    <complexType>
+     <sequence>
+      <element name="consultarReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consignar">
+    <complexType>
+     <sequence>
+      <element name="valor" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consignarResponse">
+    <complexType>
+     <sequence>
+      <element name="consignarReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retirar">
+    <complexType>
+     <sequence>
+      <element name="valor" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retirarResponse">
+    <complexType>
+     <sequence>
+      <element name="retirarReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculo">
+    <complexType>
+     <sequence>
+      <element name="con" type="xsd:int"/>
+      <element name="valor" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculoResponse">
+    <complexType>
+     <sequence>
+      <element name="calculoReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validaCuenta">
+    <complexType>
+     <sequence>
+      <element name="c" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="validaCuentaResponse">
+    <complexType>
+     <sequence>
+      <element name="validaCuentaReturn" type="tns1:Cuenta"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://modelo.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Cuenta">
+    <sequence>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+     <element name="numero" type="xsd:int"/>
+     <element name="saldo" type="xsd:int"/>
+     <element name="status" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="retirarResponse">
+
+      <wsdl:part element="impl:retirarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consignarResponse">
+
+      <wsdl:part element="impl:consignarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retirarRequest">
+
+      <wsdl:part element="impl:retirar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consignarRequest">
+
+      <wsdl:part element="impl:consignar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarRequest">
+
+      <wsdl:part element="impl:consultar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarResponse">
+
+      <wsdl:part element="impl:consultarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validaCuentaResponse">
+
+      <wsdl:part element="impl:validaCuentaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="validaCuentaRequest">
+
+      <wsdl:part element="impl:validaCuenta" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculoResponse">
+
+      <wsdl:part element="impl:calculoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculoRequest">
+
+      <wsdl:part element="impl:calculo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="TransaccionesImpl">
+
+      <wsdl:operation name="consultar">
+
+         <wsdl:input message="impl:consultarRequest" name="consultarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:consultarResponse" name="consultarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consignar">
+
+         <wsdl:input message="impl:consignarRequest" name="consignarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:consignarResponse" name="consignarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retirar">
+
+         <wsdl:input message="impl:retirarRequest" name="retirarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:retirarResponse" name="retirarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculo">
+
+         <wsdl:input message="impl:calculoRequest" name="calculoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:calculoResponse" name="calculoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validaCuenta">
+
+         <wsdl:input message="impl:validaCuentaRequest" name="validaCuentaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:validaCuentaResponse" name="validaCuentaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TransaccionesImplSoapBinding" type="impl:TransaccionesImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consignar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consignarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consignarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retirar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="retirarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="retirarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="calculoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="calculoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="validaCuenta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="validaCuentaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="validaCuentaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TransaccionesImplService">
+
+      <wsdl:port binding="impl:TransaccionesImplSoapBinding" name="TransaccionesImpl">
+
+         <wsdlsoap:address location="http://localhost:8080/CuentaBancaria/services/TransaccionesImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
